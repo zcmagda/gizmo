@@ -39,7 +39,14 @@
 * Bugfixes
 * Comments features
 
+## Installation
 
+### Requirements
+- java 8
+- gradle
+
+### Instructions
+Run `gradle bootRun` and go [here](http://localhost:8080/greeting?name=Gizmo)
 
 
 *(image source: https://www.mopop.org/media/2258/cla_artifacts_gizmo-0633_1200x630.jpg?anchor=center&mode=crop&width=1140&height=550&rnd=131826407410000000)*
