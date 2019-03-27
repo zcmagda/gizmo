@@ -4,12 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GizmoApplication
+public class Application
 {
 
     public static void main(String[] args)
     {
-        SpringApplication.run(GizmoApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
 }
