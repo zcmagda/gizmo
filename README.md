@@ -46,7 +46,7 @@
 - gradle
 
 ### Instructions
-Run `gradle bootRun` and go [here](http://localhost:8080/greeting?name=Gizmo)
+To start application server run `./gradlew bootRun`. You can now go to [http://localhost:8080/greeting?name=Gizmo](http://localhost:8080/greeting?name=Gizmo). To gracefully shutdown server run `curl -X POST localhost:8080/actuator/shutdown`.  
 
 
 *(image source: https://www.mopop.org/media/2258/cla_artifacts_gizmo-0633_1200x630.jpg?anchor=center&mode=crop&width=1140&height=550&rnd=131826407410000000)*
