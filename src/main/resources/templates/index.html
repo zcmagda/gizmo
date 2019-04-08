@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="../static/bootstrap.min.css" th:href="@{/bootstrap.min.css}"/>
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}"/>
+    <script href="../static/jquery-3.3.1.min.js" th:href="@{/jquery-3.3.1.min.js}"></script>
 </head>
 <body>
 <header>
@@ -13,7 +14,7 @@
     </div>
 </header>
 <div id="main" class="container">
-    <p th:text="'Hello, ' + ${name} + '!!!!!'"/>
+    <p th:text="'Hello, ' + ${name} + '!!!!!'"></p>
 </div>
 <footer>
     <div class="container text-right">
