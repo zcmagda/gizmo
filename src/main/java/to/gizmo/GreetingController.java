@@ -2,11 +2,13 @@ package to.gizmo;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class GreetingController
 {
 
@@ -14,9 +16,10 @@ public class GreetingController
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name)
+    public String greeting(Model model)
     {
-        return new Greeting(counter.incrementAndGet(),
-            String.format(template, name));
+        model.addAttribute("name", "name");
+        return "index";
     }
+
 }
