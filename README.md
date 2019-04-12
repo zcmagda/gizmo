@@ -42,9 +42,13 @@ User will be able to:
 ### Requirements
 - java 8
 - gradle
+- mysql database
 
 ### Instructions
-To start application server run `./gradlew bootRun`. 
+1. Copy `src/main/resources/application-dev.properties.dist` to `src/main/resources/application-dev.properties`
+2. Fill or change required configuration in `src/main/resources/application-dev.properties`
+3. Start application server run `./gradlew bootRun` 
+
 You can now go to [http://localhost:8080/](http://localhost:8080/). 
 
 To gracefully shutdown server run `curl -X POST localhost:8080/actuator/shutdown`.  
