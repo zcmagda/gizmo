@@ -21,23 +21,21 @@
 <hr>
 
 ### Schedule
-#### 6.04.2019
-* Compile project
-* Create classes mentioned in crc diagram
-* Create basic layout for project (front)
 #### 13.04.2019
-* Bugfixes
-* Possibility to create boards, lists and cards
-* Assign roles to users connected to boards
-* Change card priority
+User will be able to:
+* create account.
+* create own board and select current.
 #### 27.04.2019
-* Bugfixes
-* Other crud features
-* Moving cards between lists
-* Change board background for free!
+User will be able to:
+* create lists and cards
+* assign roles to users connected to boards
+* change card priority
+* change board background for free!
 #### 11.05.2019
-* Bugfixes
-* Comments features
+User will be able to:
+* move cards between lists
+* edit components
+* comment cards
 
 ## Installation
 
@@ -46,7 +44,10 @@
 - gradle
 
 ### Instructions
-To start application server run `./gradlew bootRun`. You can now go to [http://localhost:8080/greeting?name=Gizmo](http://localhost:8080/greeting?name=Gizmo). To gracefully shutdown server run `curl -X POST localhost:8080/actuator/shutdown`.  
+To start application server run `./gradlew bootRun`. 
+You can now go to [http://localhost:8080/](http://localhost:8080/). 
+
+To gracefully shutdown server run `curl -X POST localhost:8080/actuator/shutdown`.  
 
 
 *(image source: https://www.mopop.org/media/2258/cla_artifacts_gizmo-0633_1200x630.jpg?anchor=center&mode=crop&width=1140&height=550&rnd=131826407410000000)*
