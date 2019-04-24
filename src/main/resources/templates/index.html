@@ -8,9 +8,16 @@
     <script type="text/javascript" th:src="@{/jquery-3.3.1.min.js}"></script>
 </head>
 <body>
-<div th:insert="fragments/navbar.html :: header" >...</div>
+<div th:insert="fragments/navbar.html :: header">...</div>
 <div id="main" class="container">
-    <p th:text="${welcomeMessage}"></p>
+    <div th:if="${exist}">
+        <p>
+            HEY! User with mail <span th:text="${existingMail}"></span> already exist. You should login.
+        </p>
+    </div>
+    <div th:if="${welcomeMessage}">
+        <p th:text="'Hello, ' + ${welcomeMessage} + '!!!!!'"></p>
+    </div>
 </div>
 <footer>
     <div class="container text-right">
