@@ -10,7 +10,7 @@
 <body>
 <div th:insert="fragments/navbar.html :: header" >...</div>
 <div id="main" class="container">
-    <p th:text="'Hello, ' + ${welcomeMessage} + '!!!!!'"></p>
+    <p th:text="${welcomeMessage}"></p>
 </div>
 <footer>
     <div class="container text-right">

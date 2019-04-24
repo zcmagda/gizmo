@@ -23,10 +23,11 @@ public class Application implements CommandLineRunner
     }
 
     @Override
-    public void run(String... strings) throws Exception
+    public void run(String... strings)
     {
         log.info("Inserting default user");
         User user = new User();
+        user.setId(1);
         user.setEmail("user");
         user.setPassword("password");
         userRepository.save(user);

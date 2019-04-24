@@ -43,11 +43,12 @@ User will be able to:
 - java 8
 - gradle
 - mysql database
+- redis database
 
 ### Instructions
-1. Copy `src/main/resources/application-dev.properties.dist` to `src/main/resources/application-dev.properties`
-2. Fill or change required configuration in `src/main/resources/application-dev.properties`
-3. Start application server run `./gradlew bootRun` 
+1. Copy `src/main/resources/application-dev.properties.dist` to `src/main/resources/application-dev.properties` and fill or change required configuration
+2. Start database servers configured in previous step
+3. Start application server with `./gradlew bootRun` 
 
 You can now go to [http://localhost:8080/](http://localhost:8080/). 
 
