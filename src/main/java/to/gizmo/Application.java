@@ -28,7 +28,7 @@ public class Application implements CommandLineRunner
         log.info("Inserting default user");
         User user = new User();
         user.setId(1);
-        user.setEmail("user");
+        user.setUsername("user");
         user.setPassword("password");
         userRepository.save(user);
 

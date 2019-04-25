@@ -35,10 +35,18 @@ public class GizmoController
             Optional<User> found = userRepository.findById((Integer) session.getAttribute("userId"));
             if (found.isPresent()) {
                 User user = found.get();
-                welcomeMessage = "Hello my friend: " + user.getEmail();
+                welcomeMessage = "Hello " + user.getUsername() + ", my friend";
             }
         }
         model.addAttribute("welcomeMessage", welcomeMessage);
+
+        return "index";
+    }
+
+    @RequestMapping("/secured")
+    public String secured(HttpServletRequest request, Model model)
+    {
+        model.addAttribute("welcomeMessage", "Hello in secured");
 
         return "index";
     }

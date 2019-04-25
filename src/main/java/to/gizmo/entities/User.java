@@ -1,17 +1,21 @@
 package to.gizmo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
-public class User
+public class User implements UserDetails
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String email;
+
+    @Column(length = 100, unique = true)
+    private String username;
+
     private String password;
 
     public Integer getId()
@@ -24,14 +28,14 @@ public class User
         this.id = id;
     }
 
-    public String getEmail()
+    public String getUsername()
     {
-        return email;
+        return username;
     }
 
-    public void setEmail(String email)
+    public void setUsername(String username)
     {
-        this.email = email;
+        this.username = username;
     }
 
     public String getPassword()
@@ -47,6 +51,36 @@ public class User
     @Override
     public String toString()
     {
-        return String.format("Customer[id=%d, email='%s']", id, email);
+        return String.format("Customer[id=%d, username='%s']", id, username);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities()
+    {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled()
+    {
+        return true;
     }
 }
