@@ -10,19 +10,18 @@
 <body>
 <div th:insert="fragments/navbar.html :: header">...</div>
 <div id="main" class="container">
-    <div>
-        <p th:text="${welcomeMessage}">Hello stranger</p>
-    </div>
-    <div th:if="${boards}" class="boards">
-        <tr th:each="board : ${boards}">
-            <a href="/" class="btn btn-info"> <td th:text="${board.name}"></td></a>
-        </tr>
-    </div>
-    <h2>Add board</h2>
-    <form th:action="@{/addBoard}" th:object="${board}" method="post">
+    <h2 class="modal-title" id="registerModalLabel">Register form</h2>
+    <form th:action="@{/register}" th:object="${user}" method="post">
         <div class="form-group">
-            <label for="name" class="form-control-label">Name</label>
-            <input type="text" class="form-control" th:field="*{name}" id="name"/>
+            <label for="username" class="form-control-label">Username</label>
+            <input type="text" class="form-control" th:field="*{username}" id="username"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="form-control-label">Password</label>
+            <input type="password" class="form-control" th:field="*{password}" id="password"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
         </div>
         <input type="submit" value="Submit" class="btn btn-primary"/>
     </form>
