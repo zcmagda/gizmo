@@ -18,7 +18,7 @@ public class BoardController {
     @PostMapping("/addBoard")
     public String addBoard(@Valid Board board, Model model) {
 
-        Optional<Board> found = boardRepository.findByName(board.getName());
+        Optional<Board> found = boardRepository.findByTitle(board.getTitle());
         if (found.isPresent()) {
             return "redirect:/";
         } else {

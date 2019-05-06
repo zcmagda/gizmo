@@ -44,7 +44,7 @@ public class Application implements CommandLineRunner
         for (int i = 1; i < 5; i++) {
             Board board = new Board();
             board.setId(i);
-            board.setName("board " + i);
+            board.setTitle("board " + i);
             boardRepository.save(board);
         }
 

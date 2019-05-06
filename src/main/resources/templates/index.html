@@ -15,14 +15,14 @@
     </div>
     <div th:if="${boards}" class="boards">
         <tr th:each="board : ${boards}">
-            <a href="/" class="btn btn-info"> <td th:text="${board.name}"></td></a>
+            <a href="/" class="btn btn-info"> <td th:text="${board.title}"></td></a>
         </tr>
     </div>
     <h2>Add board</h2>
     <form th:action="@{/addBoard}" th:object="${board}" method="post">
         <div class="form-group">
-            <label for="name" class="form-control-label">Name</label>
-            <input type="text" class="form-control" th:field="*{name}" id="name"/>
+            <label for="title" class="form-control-label">Title</label>
+            <input type="text" class="form-control" th:field="*{title}" id="title"/>
         </div>
         <input type="submit" value="Submit" class="btn btn-primary"/>
     </form>
