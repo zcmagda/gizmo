@@ -3,10 +3,10 @@ package to.gizmo.entities;
 import javax.persistence.*;
 
 @Entity
-public class Board
+public class Workspace
 {
     @Id
-    @Column(name = "board_id")
+    @Column(name = "workspace_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
@@ -20,7 +20,7 @@ public class Board
     @Override
     public String toString()
     {
-        return String.format("Board[id=%d, title='%s']", id, title);
+        return String.format("Workspace[id=%d, title='%s']", id, title);
     }
 
     public Integer getId()

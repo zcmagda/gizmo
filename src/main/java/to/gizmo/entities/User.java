@@ -25,17 +25,17 @@ public class User implements UserDetails
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private List<Board> boards;
+    private List<Workspace> workspaces;
 
     @Override
     public String toString()
     {
-        List<String> userBoards = new ArrayList<>();
-        for (Board board : boards) {
-            userBoards.add(board.toString());
+        List<String> userWorkspaces = new ArrayList<>();
+        for (Workspace workspace : workspaces) {
+            userWorkspaces.add(workspace.toString());
         }
 
-        return String.format("User[id=%d, username='%s', boards='%s']", id, username, String.join(", ", userBoards));
+        return String.format("User[id=%d, username='%s', workspaces='%s']", id, username, String.join(", ", userWorkspaces));
     }
 
     public Integer getId()
@@ -68,14 +68,14 @@ public class User implements UserDetails
         this.password = password;
     }
 
-    public List<Board> getBoards()
+    public List<Workspace> getWorkspaces()
     {
-        return boards;
+        return workspaces;
     }
 
-    public void setBoards(List<Board> boards)
+    public void setWorkspaces(List<Workspace> workspaces)
     {
-        this.boards = boards;
+        this.workspaces = workspaces;
     }
 
     @Override

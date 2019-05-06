@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import to.gizmo.entities.Board;
+import to.gizmo.entities.Workspace;
 import to.gizmo.entities.User;
-import to.gizmo.repositories.BoardRepository;
+import to.gizmo.repositories.WorkspaceRepository;
 import to.gizmo.repositories.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +22,7 @@ public class GizmoController {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private BoardRepository boardRepository;
+    private WorkspaceRepository workspaceRepository;
 
     @RequestMapping("/")
     public String index(HttpServletRequest request, Model model) {
@@ -44,12 +43,12 @@ public class GizmoController {
         }
         model.addAttribute("welcomeMessage", welcomeMessage);
 
-        //get boards
-        List<Board> boards = boardRepository.findAll();
-        if(!boards.isEmpty()) {
-            model.addAttribute("boards", boards);
+        //get workspaces
+        List<Workspace> workspaces = workspaceRepository.findAll();
+        if(!workspaces.isEmpty()) {
+            model.addAttribute("workspaces", workspaces);
         }
-        model.addAttribute("board", new Board());
+        model.addAttribute("workspace", new Workspace());
 
         return "index";
     }

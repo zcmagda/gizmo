@@ -7,9 +7,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import to.gizmo.entities.Board;
+import to.gizmo.entities.Workspace;
 import to.gizmo.entities.User;
-import to.gizmo.repositories.BoardRepository;
+import to.gizmo.repositories.WorkspaceRepository;
 import to.gizmo.repositories.UserRepository;
 
 @SpringBootApplication
@@ -21,7 +21,7 @@ public class Application implements CommandLineRunner
     private UserRepository userRepository;
 
     @Autowired
-    private BoardRepository boardRepository;
+    private WorkspaceRepository workspaceRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -41,12 +41,13 @@ public class Application implements CommandLineRunner
         user.setPassword(passwordEncoder.encode("password"));
         userRepository.save(user);
 
+        log.info("Inserting default workspaces");
         for (int i = 1; i < 5; i++) {
-            Board board = new Board();
-            board.setId(i);
-            board.setUser(user);
-            board.setTitle("board " + i);
-            boardRepository.save(board);
+            Workspace workspace = new Workspace();
+            workspace.setId(i);
+            workspace.setUser(user);
+            workspace.setTitle("workspace " + i);
+            workspaceRepository.save(workspace);
         }
 
         log.info("Fetching all users");
