@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import to.gizmo.entities.Board;
 import to.gizmo.entities.User;
 import to.gizmo.repositories.BoardRepository;
@@ -18,8 +19,12 @@ public class Application implements CommandLineRunner
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public static void main(String[] args)
     {
@@ -33,7 +38,7 @@ public class Application implements CommandLineRunner
         User user = new User();
         user.setId(1);
         user.setUsername("user");
-        user.setPassword("password");
+        user.setPassword(passwordEncoder.encode("password"));
         userRepository.save(user);
 
         for (int i = 1; i < 5; i++) {
