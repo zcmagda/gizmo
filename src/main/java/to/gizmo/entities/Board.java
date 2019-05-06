@@ -6,11 +6,22 @@ import javax.persistence.*;
 public class Board
 {
     @Id
+    @Column(name = "board_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     @Column(length = 100, unique = true)
     private String title;
+
+    @Override
+    public String toString()
+    {
+        return String.format("Board[id=%d, title='%s']", id, title);
+    }
 
     public Integer getId()
     {
@@ -22,6 +33,16 @@ public class Board
         this.id = id;
     }
 
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
+    }
+
     public String getTitle()
     {
         return title;
@@ -31,5 +52,4 @@ public class Board
     {
         this.title = title;
     }
-
 }

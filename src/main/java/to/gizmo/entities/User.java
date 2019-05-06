@@ -4,12 +4,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User implements UserDetails
 {
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
@@ -17,6 +20,21 @@ public class User implements UserDetails
     private String username;
 
     private String password;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private List<Board> boards;
+
+    @Override
+    public String toString()
+    {
+        List<String> userBoards = new ArrayList<>();
+        for (Board board : boards) {
+            userBoards.add(board.toString());
+        }
+
+        return String.format("User[id=%d, username='%s', boards='%s']", id, username, String.join(", ", userBoards));
+    }
 
     public Integer getId()
     {
@@ -48,10 +66,14 @@ public class User implements UserDetails
         this.password = password;
     }
 
-    @Override
-    public String toString()
+    public List<Board> getBoards()
     {
-        return String.format("Customer[id=%d, username='%s']", id, username);
+        return boards;
+    }
+
+    public void setBoards(List<Board> boards)
+    {
+        this.boards = boards;
     }
 
     @Override
