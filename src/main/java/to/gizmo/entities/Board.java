@@ -1,7 +1,6 @@
 package to.gizmo.entities;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 public class Board
@@ -11,7 +10,7 @@ public class Board
     private Integer id;
 
     @Column(length = 100, unique = true)
-    private String name;
+    private String title;
 
     public Integer getId()
     {
@@ -23,14 +22,14 @@ public class Board
         this.id = id;
     }
 
-    public String getName()
+    public String getTitle()
     {
-        return name;
+        return title;
     }
 
-    public void setName(String name)
+    public void setTitle(String title)
     {
-        this.name = name;
+        this.title = title;
     }
 
 }
