@@ -21,8 +21,7 @@ public class User implements UserDetails
 
     private String password;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Workspace> workspaces;
 
     @Override
@@ -33,7 +32,7 @@ public class User implements UserDetails
             userWorkspaces.add(workspace.toString());
         }
 
-        return String.format("User[id=%d, username='%s', workspaces='%s']", id, username, String.join(", ", userWorkspaces));
+        return String.format("User[id=%d, username='%s', workspaces=[%s]]", id, username, String.join(", ", userWorkspaces));
     }
 
     public Integer getId()

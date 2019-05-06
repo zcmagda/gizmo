@@ -1,6 +1,8 @@
 package to.gizmo.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Workspace
@@ -17,10 +19,18 @@ public class Workspace
     @Column(length = 100, unique = true)
     private String title;
 
+    @OneToMany(mappedBy = "workspace", fetch = FetchType.EAGER)
+    private List<Board> boards;
+
     @Override
     public String toString()
     {
-        return String.format("Workspace[id=%d, title='%s']", id, title);
+        List<String> workspaceBoards = new ArrayList<>();
+        for (Board board : boards) {
+            workspaceBoards.add(board.toString());
+        }
+
+        return String.format("Workspace[id=%d, title='%s', boards=[%s]]", id, title, String.join(", ", workspaceBoards));
     }
 
     public Integer getId()
@@ -51,5 +61,15 @@ public class Workspace
     public void setTitle(String title)
     {
         this.title = title;
+    }
+
+    public List<Board> getBoards()
+    {
+        return boards;
+    }
+
+    public void setBoards(List<Board> boards)
+    {
+        this.boards = boards;
     }
 }

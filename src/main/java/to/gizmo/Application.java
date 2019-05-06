@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import to.gizmo.entities.Board;
 import to.gizmo.entities.Workspace;
 import to.gizmo.entities.User;
+import to.gizmo.repositories.BoardRepository;
 import to.gizmo.repositories.WorkspaceRepository;
 import to.gizmo.repositories.UserRepository;
 
@@ -20,6 +22,8 @@ public class Application implements CommandLineRunner
     private UserRepository userRepository;
     @Autowired
     private WorkspaceRepository workspaceRepository;
+    @Autowired
+    private BoardRepository boardRepository;
 
     public static void main(String[] args)
     {
@@ -37,12 +41,18 @@ public class Application implements CommandLineRunner
         userRepository.save(user);
 
         log.info("Inserting default workspaces");
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             Workspace workspace = new Workspace();
-            workspace.setId(i);
             workspace.setUser(user);
             workspace.setTitle("workspace " + i);
             workspaceRepository.save(workspace);
+            for (int j = 1; j <= 3; j++) {
+                Board board = new Board();
+                board.setWorkspace(workspace);
+                board.setTitle("board " + j);
+                board.setPriority(j);
+                boardRepository.save(board);
+            }
         }
 
         log.info("Fetching all users");
