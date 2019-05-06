@@ -9,7 +9,7 @@ public class Workspace
 {
     @Id
     @Column(name = "workspace_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne

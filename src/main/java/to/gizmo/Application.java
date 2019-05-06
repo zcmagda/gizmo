@@ -8,9 +8,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import to.gizmo.entities.Board;
+import to.gizmo.entities.Card;
 import to.gizmo.entities.Workspace;
 import to.gizmo.entities.User;
 import to.gizmo.repositories.BoardRepository;
+import to.gizmo.repositories.CardRepository;
 import to.gizmo.repositories.WorkspaceRepository;
 import to.gizmo.repositories.UserRepository;
 
@@ -27,6 +29,8 @@ public class Application implements CommandLineRunner
 
     @Autowired
     private BoardRepository boardRepository;
+    @Autowired
+    private CardRepository cardRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -47,7 +51,7 @@ public class Application implements CommandLineRunner
         userRepository.save(user);
 
         log.info("Inserting default workspaces");
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 3; i++) {
             Workspace workspace = new Workspace();
             workspace.setUser(user);
             workspace.setTitle("workspace " + i);
@@ -58,6 +62,14 @@ public class Application implements CommandLineRunner
                 board.setTitle("board " + j);
                 board.setPriority(j);
                 boardRepository.save(board);
+                for (int k = 1; k <= 3; k++) {
+                    Card card = new Card();
+                    card.setBoard(board);
+                    card.setTitle("card " + k);
+                    card.setContent("content " + k);
+                    card.setPriority(k);
+                    cardRepository.save(card);
+                }
             }
         }
 

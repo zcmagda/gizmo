@@ -1,13 +1,15 @@
 package to.gizmo.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Board
 {
     @Id
     @Column(name = "board_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
@@ -18,10 +20,18 @@ public class Board
 
     private Integer priority;
 
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    private List<Card> cards;
+
     @Override
     public String toString()
     {
-        return String.format("Board[id=%d, title='%s', priority=%d]", id, title, priority);
+        List<String> boardCards = new ArrayList<>();
+        for (Card card : cards) {
+            boardCards.add(card.toString());
+        }
+
+        return String.format("Board[id=%d, title='%s', priority=%d, cards=[%s]]", id, title, priority, String.join(", ", boardCards));
     }
 
     public Integer getId()
@@ -62,5 +72,15 @@ public class Board
     public void setPriority(Integer priority)
     {
         this.priority = priority;
+    }
+
+    public List<Card> getCards()
+    {
+        return cards;
+    }
+
+    public void setCards(List<Card> cards)
+    {
+        this.cards = cards;
     }
 }
