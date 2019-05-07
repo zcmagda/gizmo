@@ -5,10 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class User implements UserDetails
@@ -24,13 +21,13 @@ public class User implements UserDetails
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<Workspace> workspaces;
+    private Collection<Workspace> workspaces;
 
     @Override
     public String toString()
     {
         List<String> userWorkspaces = new ArrayList<>();
-        for (Workspace workspace : workspaces) {
+        for (Workspace workspace : getWorkspaces()) {
             userWorkspaces.add(workspace.toString());
         }
 
@@ -67,12 +64,12 @@ public class User implements UserDetails
         this.password = password;
     }
 
-    public List<Workspace> getWorkspaces()
+    public Collection<Workspace> getWorkspaces()
     {
-        return workspaces;
+        return new LinkedHashSet<>(workspaces);
     }
 
-    public void setWorkspaces(List<Workspace> workspaces)
+    public void setWorkspaces(Collection<Workspace> workspaces)
     {
         this.workspaces = workspaces;
     }

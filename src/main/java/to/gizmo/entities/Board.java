@@ -2,6 +2,8 @@ package to.gizmo.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 @Entity
@@ -21,13 +23,13 @@ public class Board
     private Integer priority;
 
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
-    private List<Card> cards;
+    private Collection<Card> cards;
 
     @Override
     public String toString()
     {
         List<String> boardCards = new ArrayList<>();
-        for (Card card : cards) {
+        for (Card card : getCards()) {
             boardCards.add(card.toString());
         }
 
@@ -74,12 +76,12 @@ public class Board
         this.priority = priority;
     }
 
-    public List<Card> getCards()
+    public Collection<Card> getCards()
     {
-        return cards;
+        return new LinkedHashSet<>(cards);
     }
 
-    public void setCards(List<Card> cards)
+    public void setCards(Collection<Card> cards)
     {
         this.cards = cards;
     }

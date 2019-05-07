@@ -1,11 +1,10 @@
 package to.gizmo.repositories;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import to.gizmo.entities.Board;
 
-import java.util.List;
-
+@Repository
 public interface BoardRepository extends CrudRepository<Board, Integer>
 {
-    List<Board> findAll();
 }

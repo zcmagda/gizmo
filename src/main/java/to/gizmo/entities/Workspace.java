@@ -2,6 +2,8 @@ package to.gizmo.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 @Entity
@@ -20,13 +22,13 @@ public class Workspace
     private String title;
 
     @OneToMany(mappedBy = "workspace", fetch = FetchType.EAGER)
-    private List<Board> boards;
+    private Collection<Board> boards;
 
     @Override
     public String toString()
     {
         List<String> workspaceBoards = new ArrayList<>();
-        for (Board board : boards) {
+        for (Board board : getBoards()) {
             workspaceBoards.add(board.toString());
         }
 
@@ -63,9 +65,9 @@ public class Workspace
         this.title = title;
     }
 
-    public List<Board> getBoards()
+    public Collection<Board> getBoards()
     {
-        return boards;
+        return new LinkedHashSet<>(boards);
     }
 
     public void setBoards(List<Board> boards)

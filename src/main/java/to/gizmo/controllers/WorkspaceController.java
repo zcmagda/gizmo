@@ -82,7 +82,8 @@ public class WorkspaceController
         if (!optional.isPresent()) {
             return "404";
         }
-        workspaceRepository.delete(optional.get());
+        Workspace workspace = optional.get();
+        workspaceRepository.delete(workspace);
 
         return "redirect:/";
     }

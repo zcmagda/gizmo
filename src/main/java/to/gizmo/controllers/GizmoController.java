@@ -47,10 +47,9 @@ public class GizmoController
         model.addAttribute("welcomeMessage", welcomeMessage);
 
         //get workspaces
-        List<Workspace> workspaces = workspaceRepository.findAll();
-        if (!workspaces.isEmpty()) {
-            model.addAttribute("workspaces", workspaces);
-        }
+        Iterable<Workspace> workspaces = workspaceRepository.findAll();
+
+        model.addAttribute("workspaces", workspaces);
         model.addAttribute("workspace", new Workspace());
 
         return "index";
