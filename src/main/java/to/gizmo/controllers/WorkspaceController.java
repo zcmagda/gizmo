@@ -22,8 +22,8 @@ public class WorkspaceController
     WorkspaceRepository workspaceRepository;
 
     @PostMapping("/addWorkspace")
-    public String addWorkspace(@Valid Workspace workspace, Model model) {
-
+    public String addWorkspace(@Valid Workspace workspace, Model model)
+    {
         Optional<Workspace> found = workspaceRepository.findByTitle(workspace.getTitle());
         if (found.isPresent()) {
             return "redirect:/";
@@ -36,6 +36,5 @@ public class WorkspaceController
             workspaceRepository.save(workspace);
             return "redirect:/";
         }
-
     }
 }

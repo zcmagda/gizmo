@@ -18,6 +18,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception
     {
         http
+            .csrf()
+                .disable()
             .authorizeRequests()
                 .antMatchers("/css/**", "/js/**").permitAll()
                 .antMatchers("/", "/register").permitAll()
@@ -25,13 +27,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
                 .and()
             .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/")
                 .permitAll()
                 .and()
             .logout()
-                .logoutUrl("/logout")
-                .permitAll()
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true);
+                .invalidateHttpSession(true)
+                .permitAll();
     }
 
     @Bean

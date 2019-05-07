@@ -3,7 +3,7 @@ package to.gizmo.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import to.gizmo.entities.Workspace;
 import to.gizmo.entities.User;
 import to.gizmo.repositories.WorkspaceRepository;
@@ -18,14 +18,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class GizmoController {
+public class GizmoController
+{
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private WorkspaceRepository workspaceRepository;
 
-    @RequestMapping("/")
-    public String index(HttpServletRequest request, Model model) {
+    @GetMapping("/")
+    public String index(HttpServletRequest request, Model model)
+    {
         Date date = new Date();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -45,7 +48,7 @@ public class GizmoController {
 
         //get workspaces
         List<Workspace> workspaces = workspaceRepository.findAll();
-        if(!workspaces.isEmpty()) {
+        if (!workspaces.isEmpty()) {
             model.addAttribute("workspaces", workspaces);
         }
         model.addAttribute("workspace", new Workspace());
@@ -53,36 +56,27 @@ public class GizmoController {
         return "index";
     }
 
-    @RequestMapping("/register")
-    public String register(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-        if (null == session.getAttribute("userId")) {
-            model.addAttribute("user", new User());
-        } else {
-            return "redirect:/";
-        }
+    @GetMapping("/register")
+    public String register(HttpServletRequest request, Model model)
+    {
+        model.addAttribute("user", new User());
+
         return "register";
     }
 
-    @RequestMapping("/login")
-    public String login(HttpServletRequest request, String error, Model model) {
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+    @GetMapping(value = "/login")
+    public String login(HttpServletRequest request, String error, Model model)
+    {
+        model.addAttribute("user", new User());
 
-        HttpSession session = request.getSession();
-        if (null == session.getAttribute("userId")) {
-            model.addAttribute("user", new User());
-        } else {
-            return "redirect:/";
-        }
-        model.addAttribute("firstCheck", "dddd");
         return "login";
     }
 
-    @RequestMapping("/secured")
-    public String secured(HttpServletRequest request, Model model) {
+    @GetMapping("/secured")
+    public String secured(HttpServletRequest request, Model model)
+    {
         model.addAttribute("welcomeMessage", "Hello in secured");
 
-        return "index";
+        return "secured";
     }
 }

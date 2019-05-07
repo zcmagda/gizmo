@@ -7,12 +7,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import to.gizmo.entities.User;
 import to.gizmo.repositories.UserRepository;
 
+import java.io.Serializable;
 import java.util.Optional;
 
-public class DatabaseUserDetailsService implements UserDetailsService
+public class DatabaseUserDetailsService implements UserDetailsService, Serializable
 {
     @Autowired
-    UserRepository userRepository;
+    private transient UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
@@ -22,6 +23,6 @@ public class DatabaseUserDetailsService implements UserDetailsService
             throw new UsernameNotFoundException("");
         }
 
-        return result.get();
+        return new CustomUserDetails(result.get());
     }
 }

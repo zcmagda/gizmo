@@ -29,6 +29,7 @@ public class Application implements CommandLineRunner
 
     @Autowired
     private BoardRepository boardRepository;
+
     @Autowired
     private CardRepository cardRepository;
 
