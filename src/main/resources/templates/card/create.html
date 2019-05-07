@@ -12,7 +12,7 @@
     </form>
     <a th:href="@{'/workspace/read/' + ${card.getBoard().getWorkspace().getId()}}">Workspace</a>
 
-    <form th:action="@{'create'}" th:object="${card}" method="post">
+    <form th:action="@{'../create/' + ${card.getBoard().getId()}}" th:object="${card}" method="post">
         <label for="board">Board</label>
         <input type="text" th:field="*{board}" id="board" disabled="disabled"/>
         <label for="title">Title</label>

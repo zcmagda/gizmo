@@ -25,20 +25,28 @@ public class CardController
     @Autowired
     CardRepository cardRepository;
 
-    @GetMapping("create")
-    public String create(Model model)
+    @GetMapping("create/{boardId:[0-9]+}")
+    public String create(@PathVariable Integer boardId, Model model)
     {
         Card card = new Card();
-        card.setBoard(getDefaultBoard());
+        Optional<Board> optional = boardRepository.findById(boardId);
+        if (!optional.isPresent()) {
+            throw new RuntimeException("Workspace not found");
+        }
+        card.setBoard(optional.get());
         model.addAttribute("card", card);
 
         return "card/create";
     }
 
-    @PostMapping("create")
-    public String createProcess(@Valid Card card)
+    @PostMapping("create/{boardId:[0-9]+}")
+    public String createProcess(@PathVariable Integer boardId, @Valid Card card)
     {
-        card.setBoard(getDefaultBoard());
+        Optional<Board> optional = boardRepository.findById(boardId);
+        if (!optional.isPresent()) {
+            throw new RuntimeException("Workspace not found");
+        }
+        card.setBoard(optional.get());
         cardRepository.save(card);
 
         return "redirect:/workspace/read/" + card.getBoard().getWorkspace().getId();

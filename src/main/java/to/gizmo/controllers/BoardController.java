@@ -25,23 +25,31 @@ public class BoardController
     @Autowired
     BoardRepository boardRepository;
 
-    @GetMapping("create")
-    public String create(Model model)
+    @GetMapping("create/{workspaceId:[0-9]+}")
+    public String create(@PathVariable Integer workspaceId, Model model)
     {
         Board board = new Board();
-        board.setWorkspace(getDefaultWorkspace());
+        Optional<Workspace> optional = workspaceRepository.findById(workspaceId);
+        if (!optional.isPresent()) {
+            throw new RuntimeException("Workspace not found");
+        }
+        board.setWorkspace(optional.get());
         model.addAttribute("board", board);
 
         return "board/create";
     }
 
-    @PostMapping("create")
-    public String createProcess(@Valid Board board)
+    @PostMapping("create/{workspaceId:[0-9]+}")
+    public String createProcess(@PathVariable Integer workspaceId, @Valid Board board)
     {
-        board.setWorkspace(getDefaultWorkspace());
+        Optional<Workspace> optional = workspaceRepository.findById(workspaceId);
+        if (!optional.isPresent()) {
+            throw new RuntimeException("Workspace not found");
+        }
+        board.setWorkspace(optional.get());
         boardRepository.save(board);
 
-        return "redirect:/workspace/read/" + board.getWorkspace().getId();
+        return "redirect:/workspace/read/" + workspaceId;
     }
 
     @GetMapping("update/{id:[0-9]+}")

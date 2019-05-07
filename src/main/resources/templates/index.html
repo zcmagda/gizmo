@@ -6,31 +6,32 @@
 </head>
 <body>
 
-<h1>Index</h1>
-<form th:action="@{'/logout'}" method="post">
-    <input type="submit" value="Logout"/>
-</form>
+    <h1>Index</h1>
+    <form th:action="@{'/logout'}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+    <a th:href="@{'/workspace/create'}">Create Workspace</a>
 
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Actions</th>
-    </tr>
-    <th:block th:each="workspace : ${workspaces}">
+    <table>
         <tr>
-            <td th:text="${workspace.getId()}"></td>
-            <td th:text="${workspace.getTitle()}"></td>
-            <td>
-                <a th:href="@{'/workspace/read/' + ${workspace.getId()}}">Read</a>
-                <a th:href="@{'/workspace/update/' + ${workspace.getId()}}">Update</a>
-                <form th:action="@{'/workspace/delete/' + ${workspace.getId()}}" method="post">
-                    <input type="submit" value="Delete"/>
-                </form>
-            </td>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Actions</th>
         </tr>
-    </th:block>
-</table>
+        <th:block th:each="workspace : ${workspaces}">
+            <tr>
+                <td th:text="${workspace.getId()}"></td>
+                <td th:text="${workspace.getTitle()}"></td>
+                <td>
+                    <a th:href="@{'/workspace/read/' + ${workspace.getId()}}">Read Workspace</a>
+                    <a th:href="@{'/workspace/update/' + ${workspace.getId()}}">Update Workspace</a>
+                    <form th:action="@{'/workspace/delete/' + ${workspace.getId()}}" method="post">
+                        <input type="submit" value="Delete Workspace"/>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+    </table>
 
 </body>
 </html>
