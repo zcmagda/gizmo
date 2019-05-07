@@ -5,7 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+
     <h1>Update Card</h1>
+    <form th:action="@{'/logout'}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+    <a th:href="@{'/workspace/read/' + ${card.getBoard().getWorkspace().getId()}}">Workspace</a>
+
     <form th:action="@{'../update/' + ${card.getId()}}" th:object="${card}" method="post">
         <label for="id">Id</label>
         <input type="text" th:field="*{id}" id="id" disabled="disabled"/>
@@ -19,5 +25,6 @@
         <input type="number" th:field="*{priority}" id="priority"/>
         <input type="submit" value="Update"/>
     </form>
+
 </body>
 </html>

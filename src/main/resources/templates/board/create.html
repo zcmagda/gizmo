@@ -5,7 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+
     <h1>Create Board</h1>
+    <form th:action="@{'/logout'}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+    <a th:href="@{'/workspace/read/' + ${board.getWorkspace().getId()}}">Workspace</a>
+
     <form th:action="@{'create'}" th:object="${board}" method="post">
         <label for="workspace">Workspace</label>
         <input type="text" th:field="*{workspace}" id="workspace" disabled="disabled"/>
@@ -15,5 +21,6 @@
         <input type="number" th:field="*{priority}" id="priority"/>
         <input type="submit" value="Create"/>
     </form>
+
 </body>
 </html>

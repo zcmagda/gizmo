@@ -5,7 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+
     <h1>Update Workspace</h1>
+    <form th:action="@{'/logout'}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+    <a th:href="@{'/workspace/read/' + ${workspace.getId()}}">Workspace</a>
+
     <form th:action="@{'../update/' + ${workspace.getId()}}" th:object="${workspace}" method="post">
         <label for="id">Id</label>
         <input type="text" th:field="*{id}" id="id" disabled="disabled"/>
@@ -15,5 +21,6 @@
         <input type="text" th:field="*{title}" id="title"/>
         <input type="submit" value="Update"/>
     </form>
+
 </body>
 </html>

@@ -13,6 +13,19 @@
     <div>
         <p th:text="${welcomeMessage}">Hello stranger</p>
     </div>
+    <div th:if="${workspaces}" class="workspaces">
+        <tr th:each="workspace : ${workspaces}">
+            <a href="/" class="btn btn-info"> <td th:text="${workspace.title}"></td></a>
+        </tr>
+    </div>
+    <h2>Add workspace</h2>
+    <form th:action="@{/addWorkspace}" th:object="${workspace}" method="post">
+        <div class="form-group">
+            <label for="title" class="form-control-label">Title</label>
+            <input type="text" class="form-control" th:field="*{title}" id="title"/>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary"/>
+    </form>
 </div>
 <footer>
     <div class="container text-right">
