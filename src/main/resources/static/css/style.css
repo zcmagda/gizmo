@@ -1,4 +1,142 @@
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
 body {
-  background-color: green; }
+  font-family: 'Varela Round', sans-serif;
+  position: relative;
+  width: 100%;
+  background-color: #161616;
+  min-height: 100vh; }
+  body .bg-img {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(22, 22, 22, 0.3)), color-stop(75%, rgba(22, 22, 22, 0.7)), to(#161616)), url(../image/bg-masthead.jpg);
+    background: linear-gradient(to bottom, rgba(22, 22, 22, 0.3) 0, rgba(22, 22, 22, 0.7) 75%, #161616 100%), url(../image/bg-masthead.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    max-height: 100%;
+    height: 100vh;
+    position: absolute;
+    width: 100vw;
+    z-index: -1; }
+  body .landing {
+    padding: 15rem 0; }
+    body .landing h1 {
+      color: #d9d9d9;
+      text-transform: uppercase;
+      font-weight: bolder;
+      text-align: center;
+      font-size: 6rem; }
+  body footer {
+    right: 10px;
+    position: absolute;
+    bottom: 10px;
+    color: white; }
+
+header nav {
+  background-image: linear-gradient(#262626, transparent); }
+  header nav a {
+    color: #d9d9d9; }
+    header nav a:hover {
+      color: #595959; }
+  header nav input[type="submit"] {
+    border: none;
+    background: transparent;
+    text-transform: uppercase;
+    color: #d9d9d9; }
+    header nav input[type="submit"]:hover {
+      color: #595959; }
+
+.form-group .form-input {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 2px;
+  padding: 1rem 2rem 1rem;
+  background: #262626; }
+  .form-group .form-input:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 999;
+    height: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-position: 0% 0%;
+    background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+    background-size: 500% auto;
+    -webkit-animation: gradient 3s linear infinite;
+    animation: gradient 3s linear infinite; }
+  .form-group .form-input input {
+    flex-grow: 1;
+    color: #BFD2FF;
+    font-size: 0.9rem;
+    line-height: 1rem;
+    vertical-align: middle;
+    border-style: none;
+    background: transparent;
+    outline: none; }
+.form-group .register {
+  position: relative;
+  padding: 1rem 0 1rem;
+  margin: 0 auto;
+  max-width: 400px;
+  display: flex; }
+  .form-group .register a {
+    color: #262626;
+    margin-left: auto; }
+
+.card {
+  background-color: #262626;
+  justify-content: center; }
+  .card .card-body .card-title {
+    color: #d9d9d9;
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 1.5rem; }
+  .card .card-body p {
+    color: #d9d9d9; }
+
+.button-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 2px;
+  padding: 0.5rem 0.5rem;
+  background: rgba(57, 63, 84, 0.8);
+  margin-bottom: 10px; }
+  .button-wrapper:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 999;
+    height: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-position: 0% 0%;
+    background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+    background-size: 500% auto;
+    -webkit-animation: gradient 3s linear infinite;
+    animation: gradient 3s linear infinite; }
+  .button-wrapper a {
+    flex-grow: 1;
+    color: #BFD2FF;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    vertical-align: middle; }
+  .button-wrapper input {
+    padding: 0;
+    color: #BFD2FF;
+    background: transparent;
+    border: none; }
 
 /*# sourceMappingURL=style.css.map */
