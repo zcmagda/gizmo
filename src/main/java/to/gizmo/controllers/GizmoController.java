@@ -1,28 +1,62 @@
 package to.gizmo.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import to.gizmo.entities.Workspace;
 import to.gizmo.entities.User;
+import to.gizmo.repositories.UserRepository;
+import to.gizmo.repositories.WorkspaceRepository;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.concurrent.atomic.AtomicLong;
+import javax.validation.Valid;
 
 @Controller
 public class GizmoController
 {
+    @Autowired
+    private WorkspaceRepository workspaceRepository;
 
-    @RequestMapping("/")
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @GetMapping("/")
     public String index(Model model)
     {
-        Date date = new Date();
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        model.addAttribute("user", new User());
-        model.addAttribute("name", "name");
-        model.addAttribute("currentYear", localDate.getYear());
+        Iterable<Workspace> workspaces = workspaceRepository.findAll();
+
+        model.addAttribute("workspaces", workspaces);
+
         return "index";
     }
 
+    @GetMapping("/register")
+    public String register(Model model)
+    {
+        model.addAttribute("user", new User());
+
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String registerProcess(@Valid User user)
+    {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+
+        return "redirect:/login";
+    }
+
+    @GetMapping(value = "/login")
+    public String login(Model model)
+    {
+        model.addAttribute("user", new User());
+
+        return "login";
+    }
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gizmo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+    <h1>Read Workspace</h1>
+    <form th:action="@{'/logout'}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+    <a th:href="@{'/'}">Index</a>
+
+    <form th:object="${workspace}">
+        <label for="id">Id</label>
+        <input type="text" th:field="*{id}" id="id" disabled="disabled"/>
+        <label for="user">User</label>
+        <input type="text" th:field="*{user}" id="user" disabled="disabled"/>
+        <label for="title">Title</label>
+        <input type="text" th:field="*{title}" id="title" disabled="disabled"/>
+    </form>
+    <a th:href="@{'../update/' + ${workspace.getId()}}">Update Workspace</a>
+    <form th:action="@{'../delete/' + ${workspace.getId()}}" method="post">
+        <input type="submit" value="Delete Workspace"/>
+    </form>
+
+    <h2>Boards</h2>
+    <a th:href="@{'/board/create/' + ${workspace.getId()}}">Create Board</a>
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Priority</th>
+            <th>Cards</th>
+            <th>Actions</th>
+        </tr>
+        <th:block th:each="board : ${workspace.getBoards()}">
+            <tr>
+                <td th:text="${board.getId()}">1</td>
+                <td th:text="${board.getTitle()}">Board 1</td>
+                <td th:text="${board.getPriority()}">1</td>
+                <td>
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Priority</th>
+                            <th>Actions</th>
+                        </tr>
+                        <th:block th:each="card : ${board.getCards()}">
+                            <tr>
+                                <td th:text="${card.getId()}">1</td>
+                                <td th:text="${card.getTitle()}">Board 1</td>
+                                <td th:text="${card.getContent()}">Content 1</td>
+                                <td th:text="${card.getPriority()}">1</td>
+                                <td>
+                                    <a th:href="@{'/card/update/' + ${card.getId()}}">Update Card</a>
+                                    <form th:action="@{'/card/delete/' + ${card.getId()}}" method="post">
+                                        <input type="submit" value="Delete Card"/>
+                                    </form>
+                                </td>
+                            </tr>
+                        </th:block>
+                    </table>
+                </td>
+                <td>
+                    <a th:href="@{'/card/create/' + ${board.getId()}}">Create Card</a>
+                    <a th:href="@{'/board/update/' + ${board.getId()}}">Update Board</a>
+                    <form th:action="@{'/board/delete/' + ${board.getId()}}" method="post">
+                        <input type="submit" value="Delete Board"/>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+
+</body>
+</html>

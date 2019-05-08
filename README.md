@@ -5,17 +5,17 @@
 
 *Help me*
 
-* This super program will allow you create project-name-based boards to help you control your workflow. This project is only for educational purposes only.
+* This super program will allow you create project-name-based workspaces to help you control your workflow. This project is only for educational purposes only.
 
 <hr>
 
 ### TODO
 * Implement basic class sceletons
-* Possibility to create boards, lists and cards
-* Possibility to manage boards, lists and cards
-* Assign roles to users connected to boards
+* Possibility to create workspaces, lists and cards
+* Possibility to manage workspaces, lists and cards
+* Assign roles to users connected to workspaces
 * Moving cards between lists
-* Change board background for free!
+* Change workspace background for free!
 * Change cards priority
 * If God will help us we will implement comments system foreach cards
 <hr>
@@ -24,13 +24,13 @@
 #### 13.04.2019
 User will be able to:
 * create account.
-* create own board and select current.
+* create own workspace and select current.
 #### 27.04.2019
 User will be able to:
 * create lists and cards
-* assign roles to users connected to boards
+* assign roles to users connected to workspaces
 * change card priority
-* change board background for free!
+* change workspace background for free!
 #### 11.05.2019
 User will be able to:
 * move cards between lists
@@ -43,11 +43,12 @@ User will be able to:
 - java 8
 - gradle
 - mysql database
+- redis database
 
 ### Instructions
-1. Copy `src/main/resources/application-dev.properties.dist` to `src/main/resources/application-dev.properties`
-2. Fill or change required configuration in `src/main/resources/application-dev.properties`
-3. Start application server run `./gradlew bootRun` 
+1. Copy `src/main/resources/application-dev.properties.dist` to `src/main/resources/application-dev.properties` and fill or change required configuration
+2. Start database servers configured in previous step
+3. Start application server with `./gradlew bootRun` 
 
 You can now go to [http://localhost:8080/](http://localhost:8080/). 
 

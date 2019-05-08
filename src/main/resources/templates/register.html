@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gizmo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+    <h1>Register</h1>
+    <a th:href="@{'login'}">Login</a>
+
+    <form th:action="@{'register'}" th:object="${user}" method="post">
+        <label for="username">Username</label>
+        <input type="text" th:field="*{username}" id="username"/>
+        <label for="password">Password</label>
+        <input type="text" th:field="*{password}" id="password"/>
+        <input type="submit" value="Register"/>
+    </form>
+
+</body>
+</html>

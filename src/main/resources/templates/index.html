@@ -3,29 +3,35 @@
 <head>
     <title>Gizmo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../static/bootstrap.min.css" th:href="@{/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}"/>
-    <script type="text/javascript" th:src="@{/jquery-3.3.1.min.js}"></script>
 </head>
 <body>
-<div th:insert="fragments/navbar.html :: header">...</div>
-<div id="main" class="container">
-    <div th:if="${exist}">
-        <p>
-            HEY! User with mail <span th:text="${existingMail}"></span> already exist. You should login.
-        </p>
-    </div>
-    <div th:if="${welcomeMessage}">
-        <p th:text="'Hello, ' + ${welcomeMessage} + '!!!!!'"></p>
-    </div>
-</div>
-<footer>
-    <div class="container text-right">
-        Copyright doesn't exist. <span th:text="${currentYear}"/>
-    </div>
-    <script type="text/javascript" th:src="@{/bootstrap.min.js}"></script>
 
-</footer>
+    <h1>Index</h1>
+    <form th:action="@{'/logout'}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+    <a th:href="@{'/workspace/create'}">Create Workspace</a>
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+        <th:block th:each="workspace : ${workspaces}">
+            <tr>
+                <td th:text="${workspace.getId()}"></td>
+                <td th:text="${workspace.getTitle()}"></td>
+                <td>
+                    <a th:href="@{'/workspace/read/' + ${workspace.getId()}}">Read Workspace</a>
+                    <a th:href="@{'/workspace/update/' + ${workspace.getId()}}">Update Workspace</a>
+                    <form th:action="@{'/workspace/delete/' + ${workspace.getId()}}" method="post">
+                        <input type="submit" value="Delete Workspace"/>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+    </table>
 
 </body>
 </html>

@@ -2,12 +2,11 @@ package to.gizmo.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import to.gizmo.entities.User;
+import to.gizmo.entities.Workspace;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer>
+public interface WorkspaceRepository extends CrudRepository<Workspace, Integer>
 {
-    Optional<User> findByUsername(String username);
 }

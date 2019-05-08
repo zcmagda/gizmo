@@ -1,18 +1,38 @@
 package to.gizmo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
-public class User
+public class User implements UserDetails
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String email;
+
+    @Column(length = 100, unique = true)
+    private String username;
+
     private String password;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Collection<Workspace> workspaces;
+
+    @Override
+    public String toString()
+    {
+        List<String> userWorkspaces = new ArrayList<>();
+        for (Workspace workspace : getWorkspaces()) {
+            userWorkspaces.add(workspace.toString());
+        }
+
+        return String.format("User[id=%d, username='%s', workspaces=[%s]]", id, username, String.join(", ", userWorkspaces));
+    }
 
     public Integer getId()
     {
@@ -24,14 +44,14 @@ public class User
         this.id = id;
     }
 
-    public String getEmail()
+    public String getUsername()
     {
-        return email;
+        return username;
     }
 
-    public void setEmail(String email)
+    public void setUsername(String username)
     {
-        this.email = email;
+        this.username = username;
     }
 
     public String getPassword()
@@ -44,9 +64,43 @@ public class User
         this.password = password;
     }
 
-    @Override
-    public String toString()
+    public Collection<Workspace> getWorkspaces()
     {
-        return String.format("Customer[id=%d, email='%s']", id, email);
+        return new LinkedHashSet<>(workspaces);
+    }
+
+    public void setWorkspaces(Collection<Workspace> workspaces)
+    {
+        this.workspaces = workspaces;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities()
+    {
+        return new ArrayList<>(Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
+    }
+
+    @Override
+    public boolean isAccountNonExpired()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled()
+    {
+        return true;
     }
 }
