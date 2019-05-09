@@ -10,73 +10,118 @@
 <body>
 <div class="bg-img"></div>
 <div th:insert="fragments/navbar.html :: header">...</div>
-<h1>Read Workspace</h1>
+<h2 th:text="${workspace.title}" class="pagetitle"></h2>
 
-<form th:object="${workspace}">
-    <label for="id">Id</label>
-    <input type="text" th:field="*{id}" id="id" disabled="disabled"/>
-    <label for="user">User</label>
-    <input type="text" th:field="*{user}" id="user" disabled="disabled"/>
-    <label for="title">Title</label>
-    <input type="text" th:field="*{title}" id="title" disabled="disabled"/>
-</form>
-<a th:href="@{'../update/' + ${workspace.getId()}}">Update Workspace</a>
-<form th:action="@{'../delete/' + ${workspace.getId()}}" method="post">
-    <input type="submit" value="Delete Workspace"/>
-</form>
 
-<h2>Boards</h2>
-<a th:href="@{'/board/create/' + ${workspace.getId()}}">Create Board</a>
+<!--<form th:object="${workspace}">-->
+<!--<label for="id">Id</label>-->
+<!--<input type="text" th:field="*{id}" id="id" disabled="disabled"/>-->
+<!--<label for="user">User</label>-->
+<!--<input type="text" th:field="*{user}" id="user" disabled="disabled"/>-->
+<!--<label for="title">Title</label>-->
+<!--<input type="text" th:field="*{title}" id="title" disabled="disabled"/>-->
+<!--</form>-->
 
-<div class="container">
+
+<div class="container-fluid no-gutters">
     <div class="row">
-        <th:block th:each="board : ${workspace.getBoards()}">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <td th:text="${board.getId()}"></td>
-                            .
-                            <td th:text="${board.getTitle()}"></td>
-                            <td th:text="${board.getPriority()}"></td>
-                        </h5>
-                        <td>
-                            <table style="width: 100%">
-                                <th:block th:each="card : ${board.getCards()}">
-                                    <tr>
-                                        <td class="card-item">
-                                            <div class="card-item__header">
-                                                <h3>
-                                                    <span th:text="${card.getId()}"></span>
-                                                    <span th:text="${card.getTitle()}">Board 1</span>
-                                                </h3>
+        <div class="col-3">
+            <div class="button-wrapper link">
+
+                <a th:href="@{'../update/' + ${workspace.getId()}}">Update Workspace</a>
+            </div>
+            <form th:action="@{'../delete/' + ${workspace.getId()}}" method="post">
+                <div class="button-wrapper link">
+                    <input type="submit" value="Delete Workspace"/>
+                </div>
+            </form>
+        </div>
+        <div class="col-9">
+
+            <div class="row cards">
+                <th:block th:each="board : ${workspace.getBoards()}">
+                    <div class="cards-column">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="card-title">
+                                    <td th:text="${board.getId()}"></td>
+                                    .
+                                    <td th:text="${board.getTitle()}"></td>
+                                    <!--<td th:text="${board.getPriority()}"></td>-->
+                                </h2>
+                                <td>
+                                    <table style="width: 100%">
+                                        <th:block th:each="card : ${board.getCards()}">
+                                            <tr>
+                                                <td class="card-item">
+                                                    <div class="card-item__header">
+                                                        <h3>
+                                                            <span th:text="${card.getId()}"></span>
+                                                            <span th:text="${card.getTitle()}">Board 1</span>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="card-item__content">
+                                                        <p th:text="${card.getContent()}">Content 1</p>
+                                                    </div>
+                                                    <div class="card-item__actions row">
+                                                        <div class="col-6">
+                                                            <div class="button-wrapper link">
+                                                                <a th:href="@{'/card/update/' + ${card.getId()}}">Update
+                                                                    Card</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <form th:action="@{'/card/delete/' + ${card.getId()}}"
+                                                                  method="post">
+                                                                <div class="button-wrapper link">
+                                                                    <input type="submit" value="Delete Card"/>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </th:block>
+                                    </table>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="button-wrapper link">
+                                                <a th:href="@{'/card/create/' + ${board.getId()}}">Create Card</a>
                                             </div>
-                                            <div class="card-item__content">
-                                                <p th:text="${card.getContent()}">Content 1</p>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="button-wrapper link">
+                                                <a th:href="@{'/board/update/' + ${board.getId()}}">Update Board</a>
                                             </div>
-                                            <div class="card-item__actions">
-                                                <p th:text="${card.getPriority()}">1</p>
-                                                <a th:href="@{'/card/update/' + ${card.getId()}}">Update Card</a>
-                                                <form th:action="@{'/card/delete/' + ${card.getId()}}" method="post">
-                                                    <input type="submit" value="Delete Card"/>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="button-wrapper link">
+                                                <form th:action="@{'/board/delete/' + ${board.getId()}}" method="post">
+                                                    <input type="submit" value="Delete Board"/>
                                                 </form>
                                             </div>
-                                        </td>
-                                    </tr>
-                                </th:block>
-                            </table>
-                        </td>
-                        <td>
-                            <a th:href="@{'/card/create/' + ${board.getId()}}">Create Card</a>
-                            <a th:href="@{'/board/update/' + ${board.getId()}}">Update Board</a>
-                            <form th:action="@{'/board/delete/' + ${board.getId()}}" method="post">
-                                <input type="submit" value="Delete Board"/>
-                            </form>
-                        </td>
+                                        </div>
+                                    </div>
+                                </td>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+                <div class="cards-column">
+                    <div class="card">
+                        <a th:href="@{'/board/create/' + ${workspace.getId()}}">
+                            <div class="card-body card-create">
+                                <h2>
+                                    Create Board
+                                </h2>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
-        </th:block>
+        </div>
     </div>
 </div>
 <div th:insert="fragments/footer.html :: footer">...</div>

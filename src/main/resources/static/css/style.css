@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300");
 body {
   font-family: 'Varela Round', sans-serif;
   position: relative;
@@ -17,6 +18,12 @@ body {
     position: absolute;
     width: 100vw;
     z-index: -1; }
+  body .pagetitle {
+    font-size: 6rem;
+    color: #d9d9d9;
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-align: center; }
   body .landing {
     padding: 15rem 0; }
     body .landing h1 {
@@ -96,8 +103,7 @@ header nav {
     color: #d9d9d9;
     text-transform: uppercase;
     font-weight: bolder;
-    text-align: center;
-    font-size: 1.5rem; }
+    text-align: center; }
   .card .card-body p {
     color: #d9d9d9; }
 
@@ -111,7 +117,8 @@ header nav {
   border-radius: 2px;
   padding: 0.5rem 0.5rem;
   background: rgba(57, 63, 84, 0.8);
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  transition: 0.2s all ease; }
   .button-wrapper:after {
     content: "";
     position: absolute;
@@ -127,16 +134,61 @@ header nav {
     background-size: 500% auto;
     -webkit-animation: gradient 3s linear infinite;
     animation: gradient 3s linear infinite; }
+  .button-wrapper.link:hover {
+    background: rgba(82, 89, 110, 0.8); }
   .button-wrapper a {
     flex-grow: 1;
     color: #BFD2FF;
     font-size: 1rem;
     line-height: 1.5rem;
     vertical-align: middle; }
+    .button-wrapper a:hover {
+      text-decoration: none; }
   .button-wrapper input {
     padding: 0;
     color: #BFD2FF;
     background: transparent;
     border: none; }
+    .button-wrapper input:focus {
+      outline: none; }
+  .button-wrapper label {
+    display: inline-block;
+    width: 400px;
+    position: absolute;
+    left: -420px;
+    margin-top: auto;
+    text-align: right;
+    margin-bottom: auto; }
+  .button-wrapper textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    min-height: 100px;
+    color: #BFD2FF;
+    outline: none; }
+
+.cards {
+  flex-wrap: nowrap;
+  overflow-x: scroll; }
+  .cards .cards-column {
+    flex: 0 0 60%;
+    max-width: 100%;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px; }
+    .cards .cards-column .card {
+      min-height: 142px; }
+      .cards .cards-column .card .card-body.card-create {
+        text-align: center; }
+        .cards .cards-column .card .card-body.card-create h2 {
+          color: #d9d9d9; }
+      .cards .cards-column .card .card-body .card-item .card-item__header h3 {
+        color: #d9d9d9; }
+      .cards .cards-column .card .card-body .card-item .card-item__content {
+        font-family: 'Montserrat', sans-serif; }
 
 /*# sourceMappingURL=style.css.map */

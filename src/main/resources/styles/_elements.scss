@@ -7,7 +7,6 @@
             text-transform: uppercase;
             font-weight: bolder;
             text-align: center;
-            font-size: 1.5rem;
         }
         p {
             color: $lightGrey;
@@ -25,6 +24,7 @@
     padding: 0.5rem 0.5rem;
     background: rgba(57, 63, 84, 0.8);
     margin-bottom: 10px;
+    transition: 0.2s all ease;
     &:after {
         content: "";
         position: absolute;
@@ -41,17 +41,84 @@
         -webkit-animation: gradient 3s linear infinite;
         animation: gradient 3s linear infinite;
     }
+    &.link {
+        &:hover {
+            background: rgba(82, 89, 110, 0.8);
+        }
+    }
     a {
         flex-grow: 1;
         color: #BFD2FF;
         font-size: 1rem;
         line-height: 1.5rem;
         vertical-align: middle;
+        &:hover {
+            text-decoration: none;
+        }
     }
     input {
         padding: 0;
         color: #BFD2FF;
         background: transparent;
         border: none;
+        &:focus {
+            outline: none;
+        }
+    }
+    label {
+        display: inline-block;
+        width: 400px;
+        position: absolute;
+        left: -420px;
+        margin-top: auto;
+        text-align: right;
+        margin-bottom: auto;
+    }
+    textarea {
+        width: 100%;
+        background: transparent;
+        border: none;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        min-height: 100px;
+        color: #BFD2FF;
+        outline: none;
+    }
+}
+
+.cards {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    .cards-column {
+        flex: 0 0 60%;
+        max-width: 100%;
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+        .card {
+            min-height: 142px;
+            .card-body {
+                &.card-create {
+                    text-align: center;
+                    h2 {
+                        color: $lightGrey;
+                    }
+                }
+                .card-title {
+                }
+                .card-item {
+                    .card-item__header {
+                        h3 {
+                            color: $lightGrey;
+                        }
+                    }
+                    .card-item__content {
+                        font-family: 'Montserrat', sans-serif;
+                    }
+                }
+            }
+        }
     }
 }

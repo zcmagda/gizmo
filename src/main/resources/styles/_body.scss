@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
 
 body {
     .bg-img {
@@ -13,6 +14,13 @@ body {
         position: absolute;
         width: 100vw;
         z-index: -1;
+    }
+    .pagetitle {
+        font-size: 6rem;
+        color: $lightGrey;
+        text-transform: uppercase;
+        font-weight: bolder;
+        text-align: center;
     }
     font-family: 'Varela Round', sans-serif;
     position: relative;
@@ -34,5 +42,6 @@ body {
         position: absolute;
         bottom: 10px;
         color: white;
+
     }
 }
