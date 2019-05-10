@@ -1,18 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <header th:fragment="header">
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">GIZMO</a>
-        <div th:if="!${user}">
-            <a href="/register" class="btn btn-primary float-right">
-                Register
-            </a>
-        </div>
-        <div th:if="!${user}">
-            <a href="/login" class="btn btn-secondary float-right">
-                Login
-            </a>
-        </div>
+    <nav class="navbar">
+        <a class="navbar-brand" href="/">GIZMO</a>
+        <form th:action="@{'/logout'}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
     </nav>
 </header>
 

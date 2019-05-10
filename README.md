@@ -47,8 +47,9 @@ User will be able to:
 
 ### Instructions
 1. Copy `src/main/resources/application-dev.properties.dist` to `src/main/resources/application-dev.properties` and fill or change required configuration
-2. Start database servers configured in previous step
-3. Start application server with `./gradlew bootRun` 
+1. Start database servers configured in previous step
+1. Start local `redis-server`
+1. Start application server with `./gradlew bootRun` 
 
 You can now go to [http://localhost:8080/](http://localhost:8080/). 
 

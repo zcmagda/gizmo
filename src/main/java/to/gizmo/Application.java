@@ -66,7 +66,7 @@ public class Application implements CommandLineRunner
                         Card card = new Card();
                         card.setBoard(board);
                         card.setTitle("card " + c);
-                        card.setContent("content " + c);
+                        card.setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue lacus nunc, non scelerisque diam dignissim et. Vivamus ullamcorper porttitor sem convallis molestie. " + c);
                         card.setPriority(c);
                         cardRepository.save(card);
                     }

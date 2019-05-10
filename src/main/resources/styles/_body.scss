@@ -1,3 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
+
 body {
- background-color: green;
+    .bg-img {
+        background: -webkit-gradient(linear, left top, left bottom, from(rgba(22, 22, 22, .3)), color-stop(75%, rgba(22, 22, 22, .7)), to(#161616)), url(../image/bg-masthead.jpg);
+        background: linear-gradient(to bottom, rgba(22, 22, 22, .3) 0, rgba(22, 22, 22, .7) 75%, #161616 100%), url(../image/bg-masthead.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+        max-height: 100%;
+        height: 100vh;
+        position: absolute;
+        width: 100vw;
+        z-index: -1;
+    }
+    .pagetitle {
+        font-size: 6rem;
+        color: $lightGrey;
+        text-transform: uppercase;
+        font-weight: bolder;
+        text-align: center;
+    }
+    font-family: 'Varela Round', sans-serif;
+    position: relative;
+    width: 100%;
+    background-color: #161616;
+    min-height: 100vh;
+    .landing {
+        padding: 15rem 0;
+        h1 {
+            color: $lightGrey;
+            text-transform: uppercase;
+            font-weight: bolder;
+            text-align: center;
+            font-size: 6rem;
+        }
+    }
+    footer {
+        right: 10px;
+        position: absolute;
+        bottom: 10px;
+        color: white;
+
+    }
 }

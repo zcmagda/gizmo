@@ -3,24 +3,41 @@
 <head>
     <title>Gizmo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+    <script type="text/javascript" src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 </head>
 <body>
+<div class="bg-img"></div>
+<div th:insert="fragments/navbar.html :: header">...</div>
+<h2 class="pagetitle">Update Workspace</h2>
 
-    <h1>Update Workspace</h1>
-    <form th:action="@{'/logout'}" method="post">
-        <input type="submit" value="Logout"/>
-    </form>
-    <a th:href="@{'/workspace/read/' + ${workspace.getId()}}">Workspace</a>
+<div class="button-wrapper">
 
-    <form th:action="@{'../update/' + ${workspace.getId()}}" th:object="${workspace}" method="post">
+    <a th:href="@{'/workspace/read/' + ${workspace.getId()}}">Back to Workspace</a>
+</div>
+
+<form th:action="@{'../update/' + ${workspace.getId()}}" th:object="${workspace}" method="post">
+    <div class="button-wrapper">
+
         <label for="id">Id</label>
         <input type="text" th:field="*{id}" id="id" disabled="disabled"/>
+    </div>
+    <div class="button-wrapper">
+
         <label for="user">User</label>
         <input type="text" th:field="*{user}" id="user" disabled="disabled"/>
+    </div>
+    <div class="button-wrapper">
+
         <label for="title">Title</label>
         <input type="text" th:field="*{title}" id="title"/>
-        <input type="submit" value="Update"/>
-    </form>
+    </div>
+    <div class="button-wrapper link">
 
+        <input type="submit" value="Update"/>
+    </div>
+</form>
+<div th:insert="fragments/footer.html :: footer">...</div>
 </body>
 </html>
