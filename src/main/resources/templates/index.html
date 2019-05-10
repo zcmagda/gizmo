@@ -24,17 +24,17 @@
                             .
                             <td th:text="${workspace.getTitle()}"></td>
                         </h5>
-                        <div class="button-wrapper">
+                        <div class="button-wrapper link">
                             <a th:href="@{'/workspace/read/' + ${workspace.getId()}}" class="card-link">Read
                                 Workspace</a>
                         </div>
-                        <div class="button-wrapper">
+                        <div class="button-wrapper link">
                             <a th:href="@{'/workspace/update/' + ${workspace.getId()}}" class="card-link">Update
                                 Workspace</a>
                         </div>
                         <form th:action="@{'/workspace/delete/' + ${workspace.getId()}}" class="card-link"
                               method="post">
-                            <div class="button-wrapper">
+                            <div class="button-wrapper link">
                                 <input type="submit" value="Delete Workspace"/>
                             </div>
                         </form>
