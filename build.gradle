@@ -24,4 +24,5 @@ dependencies {
     implementation 'org.springframework.session:spring-session-data-redis'
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompile group: 'org.springframework.security', name: 'spring-security-test', version: '4.0.0.RELEASE'
 }
