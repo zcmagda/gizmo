@@ -11,20 +11,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import to.gizmo.entities.User;
-import to.gizmo.repositories.UserRepository;
 
-@WebAppConfiguration
-@RunWith(SpringJUnit4ClassRunner.class)
-@AutoConfigureMockMvc
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class GizmoControllerTest
 {
@@ -32,9 +26,6 @@ public class GizmoControllerTest
     private WebApplicationContext context;
 
     private MockMvc mockMvc;
-
-    @Autowired
-    UserRepository userRepositoryMock;
 
     @Before
     public void setup()
@@ -74,14 +65,10 @@ public class GizmoControllerTest
     @Test
     public void testRegisterProcess() throws Exception
     {
-        User user = new User();
-        user.setUsername("user");
-        user.setPassword("password");
-
         mockMvc.perform(
             post("/register")
-                .param("username", user.getUsername())
-                .param("password", user.getPassword()))
+                .param("username", "user")
+                .param("password", "password"))
             .andExpect(redirectedUrl("/login"));
     }
 }
