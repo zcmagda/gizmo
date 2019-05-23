@@ -57,38 +57,31 @@ public class BoardControllerTest {
     @Test
     @WithMockUser(username="admin")
     public void testBoardCreate() throws Exception {
-        Board board = new Board();
-        Optional<Workspace> optional = workspaceRepository.findById(1);
-
-        mockMvc.perform(get("/board/create/{id}", 1)
-            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .sessionAttr("board", optional.get())
+        mockMvc.perform(
+            get("/board/create/{workspaceId}", 1)
         )
+            .andExpect(status().isOk())
             .andExpect(view().name("board/create"));
     }
+
 
     @Test
     @WithMockUser(username="admin")
     public void testBoardCreateProcess() throws Exception {
-        Optional<Workspace> optional = workspaceRepository.findById(1);
-
-        mockMvc.perform(get("/board/create/{id}", 4)
-            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .sessionAttr("board", optional.get())
-            .param("title", "title")
+        mockMvc.perform(
+            post("/board/create/{workspaceId}", 1)
+                .param("title", "title")
         )
-            .andExpect(redirectedUrl("/workspace/read/4"));
+            .andExpect(redirectedUrl("/workspace/read/1"));
 
     }
 
     @Test
     @WithMockUser(username="admin")
     public void testBoardUpdate() throws Exception {
-        Optional<Board> optional = boardRepository.findById(1);
-
-        mockMvc.perform(get("/board/update/{id}",1)
-            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .sessionAttr("board", optional.get()))
+        mockMvc.perform(
+            get("/board/update/{id}",1)
+        )
             .andExpect(status().isOk())
             .andExpect(view().name("board/update"));
     }
@@ -98,10 +91,9 @@ public class BoardControllerTest {
     public void testBoardUpdateProcess() throws Exception {
         mockMvc.perform(
             post("/board/update/{id}",1)
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("title", "title")
-                .sessionAttr("board", "1"))
-            .andExpect(view().name("/workspace/read/1"));
+        )
+            .andExpect(redirectedUrl("/workspace/read/1"));
     }
 
 
