@@ -17,13 +17,13 @@ import javax.validation.Valid;
 public class GizmoController
 {
     @Autowired
-    private WorkspaceRepository workspaceRepository;
+    WorkspaceRepository workspaceRepository;
 
     @Autowired
     UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("/")
     public String index(Model model)
